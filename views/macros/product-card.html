@@ -1,0 +1,31 @@
+{% macro create_product_card(card) %}
+    <div class="product-card col-lg-3 col-md-4 col-sm-6 col-xs-12">
+        <div class="product-card-image-container">
+            <a href="{{ card.url }}"><img src="{{ card.image }}?width=225&height=225" /></a>
+        </div>
+
+        <div class="product-card-details">
+            <h4>{{ card.title }}</h4>
+            <h5>${{ card.price or "0.00" }}</h5>
+
+            {{ create_product_add2cart(card) }}
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro create_product_add2cart(card) %}
+    <div class="simpleCart_shelfItem">
+        <img 
+            style="display:none"
+            class="item_thumb"
+            src="{{ card.image }}?width=70&height=70" />
+            
+        <h2 style="display:none" class="item_name">{{ card.title }}</h2>
+
+        <span 
+            style="display:none"
+            class="item_price">{{ card.price }}</span>
+
+        <a href="javascript:;" class="item_add_simplecart item_add add2cart"><ion-icon name="cart-outline"></ion-icon><span class="add theme--heading-font">Add</span></a>
+    </div>
+{% endmacro %}

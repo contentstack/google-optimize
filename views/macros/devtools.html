@@ -1,0 +1,35 @@
+{% macro create_dialog(body = '') %}
+  <div class="modal fade" id="dialog_devtools" tabindex="-1" role="dialog" aria-labelledby="dialog_devtools_label">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="dialog_devtools_label">Developer Tools</h4>
+        </div>
+        <div class="modal-body">
+            <pre id="dialog_devtools_json" style="height: 500px">
+            </pre>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro create_dialog_trigger(json) %}
+  <button id="dialog_devtools_trigger" type="button" style="width: 100%; background: transparent; border-color: transparent; outline: 0;" data-toggle="modal" data-target="#dialog_devtools">
+    {{ caller() }}
+  </button>
+    
+    <script>
+      $(function() {
+        $('#dialog_devtools_json').jsonViewer({{ json }}, { collapsed: true });
+      });
+
+      $("#dialog_devtools_trigger").on("click", function (e) {
+          e.preventDefault();
+      });
+  </script>
+{% endmacro %}

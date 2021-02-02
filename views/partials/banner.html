@@ -1,0 +1,11 @@
+{% import "macros/dialog.html" as dialog %}
+
+{% if settings.global_banner.enabled == true %}
+    <article class="global-banner">
+        {% call dialog.create_dialog_trigger('dialog_global_banner', 'dialog_global_banner_trigger') -%}
+            <a id="dialog_global_banner_trigger" href="#">{{ settings.global_banner.label }}</a>
+        {%- endcall %}
+    </article>
+
+    {{ dialog.create_dialog(id='dialog_global_banner', header=settings.global_banner.dialog.title, body=settings.global_banner.dialog.body) }}
+{% endif %}

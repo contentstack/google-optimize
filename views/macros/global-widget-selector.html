@@ -1,0 +1,17 @@
+{% import "macros/carousel.html" as carousel %}
+{% import "macros/explainer.html" as explainer %}
+{% import "macros/three-columns.html" as columns %}
+{% import "macros/banner.html" as banner %}
+{% import "macros/text-area.html" as text_area %}
+
+{% macro select(data, type = '') %}
+    {% if data.explainer_banner %}
+        {{ explainer.create_explainer(data.explainer_banner) }}
+    {% elif data.three_columns_of_details %}
+        {{ columns.create_columns(data.three_columns_of_details) }}
+    {% elif data.text_area %}
+        {{ text_area.create_text_area(data.text_area) }}
+    {% elif type == 'carousel' or data.carousel %}
+        {{ carousel.create_carousel(data.carousel or data) }}
+    {% endif %}
+{% endmacro %}

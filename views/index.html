@@ -1,0 +1,86 @@
+{% import "macros/theme.html" as theme %}
+{% import "macros/dialog.html" as dialog %}
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {# the block title allows extended pages to append their own title to the browser window. #}
+	<title>{{ settings.site_title }} {% block title %}{% endblock %}</title>
+
+	{% block seo %}{% endblock %}
+	
+	<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+
+    {# The default fallback font is 'Open Sans' for this demo; The theme.create_font_links() macro below will read fonts from contentstack #}
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    {{ theme.create_font_links(settings) }}
+
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link href="/css/dist/index.css?v=2" rel="stylesheet">
+
+    {% block styles %}{% endblock %}
+
+    {# the theme-- css classes & vars are built from these macros; they read data from contentstack. #}   
+    {{ theme.create_body_theme_classes(settings) }}
+    {{ theme.create_menu_theme_classes(settings) }}
+
+    {{ theme.create_theme_vars(settings) }}
+
+    <!-- scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+	
+	<script src="/js/dist/slick.min.js"></script>
+    <script src="/js/dist/simpleCart.min.js"></script>
+    <script src="/js/dist/jquery.json-viewer.js"></script>
+      
+    <script src="https://www.googletagmanager.com/gtag/js?id={{trackingId}}" async></script>
+    <script src="https://www.googleoptimize.com/optimize.js?id={{optimizeId}}"></script> 
+    <!-- OPT-54Q9RJ2 -->
+</head>
+<body data-locale="{{ locale }}" data-pageref="{{ csEditButton.pageUid }}" data-contenttype="{{ csEditButton.contentType }}" class='{{ body_class if body_class else "theme--default-background" }}'>   
+	{% include "partials/menu.html" %}
+    
+    {# do not show global banners on error pages #}
+    {% if not isErrorPage %}
+        {% include "partials/banner.html" %}
+    {% endif %}
+
+	{% block body %}{% endblock %}
+
+    <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
+
+    <script src="/js/dist/shims.js"></script>
+    <script src="/js/dist/menu.js"></script>
+    <script src="/js/dist/google-optimize-experiments.js"></script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+
+        gtag("js", new Date());
+        gtag("config", "{{trackingId}}");
+
+        gtag('event', 'optimize.callback', {
+            callback: function (value, name) {
+                console.log('- Google Optimize -');
+                console.log('- Experiment with ID: ' + name + ' is on variant: ' + value);
+                    
+                var settings = JSON.parse('{{ abTests | safe }}');
+
+                execute_google_optimize_experiments(settings, name, value);
+
+                console.log('- End -')
+            }
+        });
+    </script>
+
+    {# allow extended pages to insert their own script tags to the page; the document elements are available by this point. #}
+    {% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,88 @@
+{% import "macros/devtools.html" as devtools %}
+
+<div class="sd-menu-container theme--menu-background">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="sd-menu theme--menu-background">
+          <a class="sd-menu-brand" href="/"><img src="{{ settings.theme.site_logo.url }}" alt="logo"/></a>
+          {% for section in settings.menu.menu_section %}
+            {% if section.hasColumns %}
+              <div class="sd-menu-dropdown">
+                <button class="sd-menu-dropdown-button">
+                  <span class="sd-menu-title theme--menu-font theme--menu-text-color">{{ section.menu_title }}</span>
+                </button>
+                <div class="sd-menu-dropdown-content theme--menu-content-background">
+                  <div class="sd-menu-row">
+                    {% for column in section.column %}
+                      {% for group in column.group %}
+                        {% if group.hasMenuItems == true %}
+                          <div class="sd-menu-column">
+                            <h3 class="theme--menu-font theme--menu-content-heading-color">{{ group.group_title }}</h3>
+                            {% for item in group.menu_item %}
+                              <a class="sd-menu-column-link theme--menu-content-link-color" href="{{ item.href or item.custom_link }}">{{ item.item_title }}</a>
+                            {% endfor %}
+                          </div>
+                        {% else %}
+                          <div class="sd-menu-column sd-menu-terminal">
+                            <a class="sd-menu-column-link theme--menu-content-link-color" href="{{ group.href }}">{{ group.group_title }}</a>
+                          </div>
+                        {% endif %}
+                      {% endfor %}
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            {% else %}
+              <a class="sd-menu-link" href="{{ section.href }}">
+                <span class="sd-menu-title theme--menu-font theme--menu-text-color">{{ section.menu_title }}</span>
+              </a>
+            {% endif %}
+          {% endfor %}
+
+          <ul id="header-options" class="theme--menu-text-color">
+              <li>
+                <button id="cart">
+                    <span class="item-count simpleCart_quantity"></span>
+                    <i class="fa fa-shopping-cart theme--menu-text-color" aria-hidden="true"></i>
+                </button>
+              </li>
+          
+            <li>
+                {% call devtools.create_dialog_trigger(json | safe) -%}
+                  <i class="fa fa-wrench theme--menu-text-color" aria-hidden="true"></i>
+                {%- endcall %}
+            </li>
+
+            <div class="cart-container">
+              <div class="shopping-cart">
+                <div class="shopping-cart-header">
+                  <div class="shopping-cart-total">
+                    <span class="lighter-text">Total:</span>
+                    <span class="simpleCart_total"></span>
+                  </div>
+                </div>
+                <div class="simpleCart_items"></div>
+                <a href="#" class="simpleCart_checkout_button button">Checkout</a>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if settings.feature_flags.enable_site_search %}
+  <div class="modal modal-center fade" id="modal-search" role="dialog">
+    <div class="modal-dialog modal-dialog-center" id="search-container">
+      <div class="modal-content">
+        <div id="search-input-container"></div>
+        <div id="search-hit-container"></div>
+      </div>
+    </div>
+  </div>
+
+{% endif %}
+
+{{ devtools.create_dialog() }}

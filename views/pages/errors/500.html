@@ -1,0 +1,12 @@
+{% extends "index.html" %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/css/dist/error.css" />
+{% endblock %}
+
+{% block body %}
+    <section id="main-error">
+        <h1>500</h1>
+        <p class="is500">{{ message }}</p>
+    </section>
+{% endblock %}

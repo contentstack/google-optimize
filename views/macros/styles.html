@@ -1,0 +1,3 @@
+{% macro set_background(url = '', params ='') %}
+    background-size: cover; background-image: url('{{ url + params }}');
+{% endmacro %}

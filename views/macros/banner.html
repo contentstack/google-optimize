@@ -1,0 +1,15 @@
+{% import "macros/styles.html" as styles %}
+
+{% macro create_banner(data) %}
+    <div class="col-lg-12" style="{{ styles.set_background(data.image.url) }}">
+        <div class="banner-content">
+            <h3>{{ data.text }}</h3>
+            <div class="banner-tags">
+                {% for tag in data.hashtags %}
+                    <span class="banner-tag">{{ tag }}</span>
+                {% endfor %}
+            </div>
+            <a class="btn banner-btn" href="{{ data.button.href }}">{{ data.button.title }}</a>
+        </div>
+    </div>
+{% endmacro %}

@@ -1,0 +1,126 @@
+{% macro create_font_links(settings) %}
+    {{ settings.theme.external_resources.font_cdn_links | safe }}
+{% endmacro %}
+
+{# will remove in v5. #}
+{% macro create_menu_theme_classes(settings) %}
+    <style>
+        .theme--menu-background {
+            background: {{ settings.theme.mega_menu.navbar.background_color }};
+        }
+
+        .theme--menu-text-color,
+        .theme--menu-link-color {
+            color: {{ settings.theme.mega_menu.navbar.link_color }};
+        }
+
+        .sd-menu-link:hover .theme--menu-link-color:after,
+        .sd-menu-link:hover .theme--menu-text-color:after,
+        .sd-menu-dropdown:hover .theme--menu-link-color:after,
+        .sd-menu-dropdown:hover .theme--menu-text-color:after {
+            background: {{ settings.theme.mega_menu.navbar.link_color }};
+        }
+
+        .theme--menu-content-background {
+            background: {{ settings.theme.mega_menu.navbar_dropdown_menu.background_color }};
+        }
+
+        .theme--menu-font {
+            font-family: {{ settings.theme.mega_menu.heading_font_name }};
+        }
+
+        .theme--menu-content-link-color {
+            color: {{ settings.theme.mega_menu.navbar_dropdown_menu.link_color }};
+        }
+
+        .theme--menu-content-heading-color {
+            color: {{ settings.theme.mega_menu.navbar_dropdown_menu.heading_color }};
+        }
+
+        .theme--menu-content-heading-color:after {
+            background: {{ settings.theme.mega_menu.navbar_dropdown_menu.heading_color }};
+        }
+
+        .theme--menu-content-link-color:hover {
+            color: {{ settings.theme.mega_menu.navbar_dropdown_menu.link_hover_color }};
+        }
+    </style>
+{% endmacro %}
+
+{# will remove in v5. #}
+{% macro create_body_theme_classes(settings) %}
+    <style>
+        * {
+            font-family: {{ settings.theme.body.body_font_name }};
+        }
+
+        .theme--heading-font {
+            font-family: {{ settings.theme.body.heading_font_name }};
+        }
+
+        .theme--brand-primary-color {
+            color: {{ settings.theme.brand.primary_color }};
+        }
+
+        .theme--brand-primary-color-background {
+            background: {{ settings.theme.brand.primary_color }};
+        }
+
+        .theme--brand-trinary-color {
+            color: {{ settings.theme.brand.trinary_color }};
+        }
+
+        .theme--global-baner-background-color {
+            background: {{ settings.theme.global_banner.background_color }};
+        }
+
+        {% if settings.theme.brand.trinary_color_inverse %}
+            .theme--brand-trinary-inverse-color {
+                color: {{ settings.theme.brand.trinary_color_inverse }} !important;
+            }
+        {% endif %}
+
+        .theme--brand-trinary-color-background {
+            background: {{ settings.theme.brand.trinary_color }};
+        }
+
+        {% if settings.theme.body.background %}
+            .theme--default-background {
+                background: {{ settings.theme.body.background }}
+            }
+        {% endif %}
+
+        {% if settings.theme.body.alternate_background %}
+            .theme--alternate-background {
+                background: {{ settings.theme.body.alternate_background }}
+            }
+        {% endif %}
+    </style>
+{% endmacro %}
+
+{% macro create_theme_vars(settings) %}
+    <style>
+        * {
+            font-family: {{ settings.theme.body.body_font_name }};
+        }
+
+        :root {
+            --theme--body-font: {{ settings.theme.body.body_font_name }};
+            --theme--heading-font: {{ settings.theme.body.heading_font_name }};
+            --theme--default-background: {{ settings.theme.body.background }};
+            --theme--alternate-background: {{ settings.theme.body.alternate_background }};
+            --theme--link-color: {{ settings.theme.body.link_color }};
+            --theme--link-hover-color: {{ settings.theme.body.link_hover_color }};
+
+            --theme--primary-color: {{ settings.theme.brand.primary_color }};
+            --theme--secondary-color: {{ settings.theme.brand.secondary_color }};
+            --theme--trinary-color: {{ settings.theme.brand.trinary_color }};
+            --theme--trinary-inverse-color: {{ settings.theme.brand.trinary_color_inverse }};
+
+            --theme--menu-heading-font: {{ settings.theme.mega_menu.heading_font_name }};
+            --theme--menu-link-font: {{ settings.theme.mega_menu.link_font_name }};
+
+            --theme--global-banner-background-color: {{ settings.theme.global_banner.background_color }};
+        }
+    </style>
+{% endmacro %}
