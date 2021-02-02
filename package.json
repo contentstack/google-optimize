@@ -1,6 +1,7 @@
 {
-  "name": "contentstack-demo",
+  "name": "contentstack-google-optimize-demo",
   "version": "1.0.0",
+  "author": "Contentstack",
   "private": true,
   "scripts": {
     "build": "gulp build",
