@@ -55,7 +55,7 @@
                             set card_input = {
                                 'url':  product.url,
                                 'image': product.featured_image[0].url,
-                                'price': product.product_link.masterData.current.masterVariant.prices[0].value.centAmount / 100,
+                                'price': product.price,
                                 'title': product.title
                             }
                         %}

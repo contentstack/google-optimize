@@ -21,7 +21,7 @@ try {
 
 	// load globals
 	global["config"] = _env;
-	console.log("env", _env.contentstack);
+
 	global["Stack"] = require("./lib/stack-initialize")(_env.contentstack);
 	global["logger"] = require("./lib/logger.js");
 
@@ -60,9 +60,9 @@ try {
 		return res.status(404).render("pages/errors/404");
 	});
 
-	app.use((err, req, res, next) => { console.log(err);
+	app.use((err, req, res, next) => {
 		if (res.headersSent) {
-			return next(err)
+			return next(err);
 		}
 
 		logger.error(err);

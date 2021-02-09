@@ -6,11 +6,7 @@
 @import './global/fancy.css';
 @import './global/three-columns.css';
 @import './global/text-area.css';
- 
-@import './global/dialog.css';
-
-@import './vendor/slick.css';
+@import './global/explainer.css';
+@import './global/dialog.css'; 
 @import './vendor/jquery.json-viewer.css';
-@import './vendor/hover-min.css';
-
 @import './google-optimize-experiments/all.css';
