@@ -3,11 +3,9 @@ function execute_google_optimize_experiments(settings, experimentId, variantId) 
         console.log(' - A/B test data not available. Please check settings.');
         return;
     }
-    console.log("--->", settings.sticky_navbar_a_b_test.experiment_id)
     var is_navbar_test = settings.sticky_navbar_a_b_test 
         && settings.sticky_navbar_a_b_test.enable_experiment
         && settings.sticky_navbar_a_b_test.experiment_id == experimentId; // settings.sticky_navbar_a_b_test.experiment_id
-    console.log("FFF", is_navbar_test)
     if (is_navbar_test) {
         do_sticky_navbar_test(variantId);
     } else {

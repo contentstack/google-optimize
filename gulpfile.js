@@ -43,14 +43,6 @@ function spawn_dev_server(cb) {
 	});
 }
 
-function exec_dev_server(cb) {
-	cp.exec('npm run dev:server', function (err, stdout, stderr) {
-		console.log(stdout);
-		console.log(stderr);
-		cb(err);
-	});
-}
-
 const build = gulp.series(clean, gulp.parallel(css, scripts));
 const dev = gulp.parallel(build, watch_files, spawn_dev_server);
 
