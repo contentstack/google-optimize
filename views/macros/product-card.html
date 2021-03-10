@@ -1,7 +1,7 @@
 {% macro create_product_card(card) %}
     <div class="product-card col-lg-3 col-md-4 col-sm-6 col-xs-12">
         <div class="product-card-image-container">
-            <a href="{{ card.url }}"><img src="{{ card.image }}?width=225&height=225" /></a>
+            <a href="{{ card.url }}"><img src="{{ card.image }}?width=225&height=225"  alt="{{card.title}}"/></a>
         </div>
 
         <div class="product-card-details">
@@ -18,7 +18,7 @@
         <img 
             style="display:none"
             class="item_thumb"
-            src="{{ card.image }}?width=70&height=70" />
+            src="{{ card.image }}?width=70&height=70" alt="{{card.title}}"/>
             
         <h2 style="display:none" class="item_name">{{ card.title }}</h2>
 

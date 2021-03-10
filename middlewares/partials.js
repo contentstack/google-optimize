@@ -38,8 +38,8 @@ module.exports = function(req, res, next) {
 					} else {
 						throw new Error("Failed to load site settings and theme.");
 					}
-				}, function error(error) {
-					callback(error);
+				}, function error(settingsError) {
+					callback(settingsError);
 				});
 		},
 		function(callback) {
@@ -54,8 +54,8 @@ module.exports = function(req, res, next) {
 					} else {
 						throw new Error("Failed to load A/B Test Settings.");
 					}
-				}, function error(error) {
-					callback(error);
+				}, function error(abTestError) {
+					callback(abTestError);
 				});
 		},
 	], function(error, success) {

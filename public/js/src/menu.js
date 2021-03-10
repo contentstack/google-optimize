@@ -12,7 +12,7 @@ function toogleButtonState() {
     }
 }
 
-simpleCart.bind('ready', function () {;
+simpleCart.bind('ready', function () {
     toogleButtonState();
 
     $("#cart").on("click", function () {

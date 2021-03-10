@@ -16,7 +16,7 @@
         <div class="carousel-inner" role="listbox">
             {% for item in data.items %}
                 <div class='item {{ "active" if loop.first }}'>
-                    <img src="{{ item.image.url }}?height=450&width=1140&fit=crop">
+                    <img src="{{ item.image.url }}?height=450&width=1140&fit=crop" alt="{{item.title}}">
                     <div class="carousel-caption">
                         <h3>{{ item.title }}</h3>
                         <p>{{ item.description}}</p>

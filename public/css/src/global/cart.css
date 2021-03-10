@@ -63,11 +63,6 @@
     margin-bottom: 18px;
 }
 
-.simpleCart_checkout_button {
-    width: 100%;
-    float: left;
-}
-
 .itemRow {
     display: block;
     float: left;
@@ -93,7 +88,7 @@
     margin-right: 10px;
 }
 
-.item-price, .item-decrement, .item-quantity, .item-quantity, .item-increment, .item-remove {
+.item-price, .item-decrement, .item-quantity, .item-increment, .item-remove {
     display: inline-block;
     margin-right: 6px;
 }
@@ -120,6 +115,7 @@
 }
 
 .simpleCart_checkout_button {
+    float: left;
     width: 70%;
     height: 40px;
     object-fit: contain;
@@ -225,9 +221,8 @@
     font-size: 16px;
     text-align: center;
     padding: 10px 0;
-    font-family: inherit;
     line-height: 1.4;
-    font-family: futura-pt, sans-serif;
+    font-family: inherit, futura-pt, sans-serif;
     font-weight: 400;
 }
 
@@ -235,8 +230,7 @@
     font-size: 14px;
     text-align: center;
     padding: 0;
-    font-family: inherit;
     line-height: 1.4;
-    font-family: futura-pt, sans-serif;
+    font-family: inherit, futura-pt, sans-serif;
     font-weight: 400;
 }
