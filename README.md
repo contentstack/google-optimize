@@ -47,4 +47,4 @@ In this guide, we will discuss the steps to implement A/B testing on a sample e-
 
 Read Contentstack [docs](https://www.contentstack.com/docs/)
 
-Learn about [Implementing Personalization Using Google Optimize on Your Website](https://www.contentstack.com/docs/developers/how-to-guides/implementing-personalization-using-google-optimize-on-your-website/)
+Learn about [Implementing Personalization Using Google Optimize on Your Website](https://www.contentstack.com/docs/developers/how-to-guides/implementing-ab-testing-for-contentstack-powered-websites-using-google-optimize/)
